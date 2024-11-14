@@ -31,7 +31,7 @@ jobs:
         run: dotnet test --no-build --verbosity normal
 
       - name: Publish API Project
-        run: dotnet publish WebAPI/WebAPI.csproj --configuration Release --output ./bin\Release\net8.0\publish
+        run: dotnet publish WebAPI/WebAPI.csproj --configuration Release --output ./publish_output
         # This will publish only the necessary files to the ./publish_output folder
 
       - name: Upload publish_output as an artifact
@@ -63,4 +63,4 @@ jobs:
         with:
           app-name: "DotNetCoreAzureGitHubApp"
           slot-name: "production"
-          package: ./bin\Release\net8.0\publish  # Deploys only the Web API publish output
+          package: ./publish_output  # Deploys only the Web API publish output
