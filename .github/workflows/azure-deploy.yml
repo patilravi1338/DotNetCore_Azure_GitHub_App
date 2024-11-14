@@ -24,6 +24,10 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
 
+      - name: Publish API Project
+        run: dotnet publish path/to/WebAPI.csproj --configuration Release --output ./publish_output
+        # This will publish only the necessary files to the ./publish_output folder
+
       - name: Build application
         run: dotnet build --no-restore
 
