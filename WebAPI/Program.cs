@@ -1,7 +1,8 @@
 using DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
-
+// Add Application Insights
+builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["ApplicationInsights:InstrumentationKey"]);
 // Add services to the container.
 // Add services
 builder.Services.AddRepositories();
