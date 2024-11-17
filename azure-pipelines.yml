@@ -6,6 +6,9 @@ trigger:
 pool:
   vmImage: 'windows-latest'
 
+variables:
+  - group: New variable group 17-Nov - SQL  # Ensure your variable group is linked here
+
 stages:
   - stage: Build
     displayName: 'Build Stage'
@@ -42,17 +45,20 @@ stages:
             displayName: 'Download API Artifacts'
             inputs:
               artifact: 'API'
+          
           - task: AzureWebApp@1
             displayName: 'Deploy API to Dev'
             inputs:
-              azureSubscription: 'YourAzureServiceConnection'
+              azureSubscription: 'Free Trial (bfcaf08b-b9a9-41be-8d42-d7ad6a6f57a7)'
               appType: 'webApp'
               appName: 'DotNetCoreAzureGitHubApp'
               package: '$(Pipeline.Workspace)/WebAPI'
+          
           - task: DownloadPipelineArtifact@2
             displayName: 'Download SQL Scripts'
             inputs:
               artifact: 'Metadata'
+          
           - task: PowerShell@2
             displayName: 'Run SQL Scripts on Dev'
             inputs:
@@ -62,8 +68,8 @@ stages:
                 $sqlFiles = Get-ChildItem -Path "$(Pipeline.Workspace)/Metadata" -Filter "*.sql"
                 foreach ($sqlFile in $sqlFiles) {
                   Write-Host "Executing script: $($sqlFile.FullName)"
-                  # Example: Execute SQL script on the DB
-                  sqlcmd -S $(SqlServerName) -d $(DatabaseName) -U $(SqlUserName) -P $(SqlPassword) -i $sqlFile.FullName
+                  # Example: Execute SQL script on the DB using the linked variable
+                  sqlcmd -S $(SQLServer) -d $(SQLDatabase) -U $(SQLUserName) -P $(SQLPassword) -i $sqlFile.FullName
                 }
 
       - job: DeployToTest
@@ -74,17 +80,20 @@ stages:
             displayName: 'Download API Artifacts'
             inputs:
               artifact: 'API'
+          
           - task: AzureWebApp@1
             displayName: 'Deploy API to Test'
             inputs:
-              azureSubscription: 'YourAzureServiceConnection'
+              azureSubscription: 'Free Trial (bfcaf08b-b9a9-41be-8d42-d7ad6a6f57a7)'
               appType: 'webApp'
               appName: 'DotNetCoreAzureGitHubApp'
               package: '$(Pipeline.Workspace)/WebAPI'
+
           - task: DownloadPipelineArtifact@2
             displayName: 'Download SQL Scripts'
             inputs:
               artifact: 'Metadata'
+          
           - task: PowerShell@2
             displayName: 'Run SQL Scripts on Test'
             inputs:
@@ -94,8 +103,8 @@ stages:
                 $sqlFiles = Get-ChildItem -Path "$(Pipeline.Workspace)/Metadata" -Filter "*.sql"
                 foreach ($sqlFile in $sqlFiles) {
                   Write-Host "Executing script: $($sqlFile.FullName)"
-                  # Example: Execute SQL script on the DB
-                  sqlcmd -S $(SqlServerName) -d $(DatabaseName) -U $(SqlUserName) -P $(SqlPassword) -i $sqlFile.FullName
+                  # Example: Execute SQL script on the DB using the linked variable
+                  sqlcmd -S $(SQLServer) -d $(SQLDatabase) -U $(SQLUserName) -P $(SQLPassword) -i $sqlFile.FullName
                 }
 
       - job: DeployToProd
@@ -106,17 +115,20 @@ stages:
             displayName: 'Download API Artifacts'
             inputs:
               artifact: 'API'
+
           - task: AzureWebApp@1
             displayName: 'Deploy API to Production'
             inputs:
-              azureSubscription: 'YourAzureServiceConnection'
+              azureSubscription: 'Free Trial (bfcaf08b-b9a9-41be-8d42-d7ad6a6f57a7)'
               appType: 'webApp'
               appName: 'DotNetCoreAzureGitHubApp'
               package: '$(Pipeline.Workspace)/WebAPI'
+          
           - task: DownloadPipelineArtifact@2
             displayName: 'Download SQL Scripts'
             inputs:
               artifact: 'Metadata'
+          
           - task: PowerShell@2
             displayName: 'Run SQL Scripts on Production'
             inputs:
@@ -126,6 +138,6 @@ stages:
                 $sqlFiles = Get-ChildItem -Path "$(Pipeline.Workspace)/Metadata" -Filter "*.sql"
                 foreach ($sqlFile in $sqlFiles) {
                   Write-Host "Executing script: $($sqlFile.FullName)"
-                  # Example: Execute SQL script on the DB
-                  sqlcmd -S $(SqlServerName) -d $(DatabaseName) -U $(SqlUserName) -P $(SqlPassword) -i $sqlFile.FullName
+                  # Example: Execute SQL script on the DB using the linked variable
+                  sqlcmd -S $(SQLServer) -d $(SQLDatabase) -U $(SQLUserName) -P $(SQLPassword) -i $sqlFile.FullName
                 }
