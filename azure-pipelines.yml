@@ -53,12 +53,12 @@ stages:
               appType: 'webApp'
               appName: 'DotNetCoreAzureGitHubApp'
               package: '$(Pipeline.Workspace)/WebAPI'
-          
+
           - task: DownloadPipelineArtifact@2
             displayName: 'Download SQL Scripts'
             inputs:
               artifact: 'Metadata'
-          
+
           - task: PowerShell@2
             displayName: 'Run SQL Scripts on Dev'
             inputs:
@@ -68,13 +68,13 @@ stages:
                 $sqlFiles = Get-ChildItem -Path "$(Pipeline.Workspace)/Metadata" -Filter "*.sql"
                 foreach ($sqlFile in $sqlFiles) {
                   Write-Host "Executing script: $($sqlFile.FullName)"
-                  # Example: Execute SQL script on the DB using the linked variable
                   sqlcmd -S $(SQLServer) -d $(SQLDatabase) -U $(SQLUserName) -P $(SQLPassword) -i $sqlFile.FullName
                 }
 
       - job: DeployToTest
         displayName: 'Deploy to Test Environment'
         dependsOn: DeployToDev
+        condition: succeeded()
         steps:
           - task: DownloadPipelineArtifact@2
             displayName: 'Download API Artifacts'
@@ -93,7 +93,7 @@ stages:
             displayName: 'Download SQL Scripts'
             inputs:
               artifact: 'Metadata'
-          
+
           - task: PowerShell@2
             displayName: 'Run SQL Scripts on Test'
             inputs:
@@ -103,13 +103,13 @@ stages:
                 $sqlFiles = Get-ChildItem -Path "$(Pipeline.Workspace)/Metadata" -Filter "*.sql"
                 foreach ($sqlFile in $sqlFiles) {
                   Write-Host "Executing script: $($sqlFile.FullName)"
-                  # Example: Execute SQL script on the DB using the linked variable
                   sqlcmd -S $(SQLServer) -d $(SQLDatabase) -U $(SQLUserName) -P $(SQLPassword) -i $sqlFile.FullName
                 }
 
       - job: DeployToProd
         displayName: 'Deploy to Production Environment'
         dependsOn: DeployToTest
+        condition: succeeded()
         steps:
           - task: DownloadPipelineArtifact@2
             displayName: 'Download API Artifacts'
@@ -138,6 +138,5 @@ stages:
                 $sqlFiles = Get-ChildItem -Path "$(Pipeline.Workspace)/Metadata" -Filter "*.sql"
                 foreach ($sqlFile in $sqlFiles) {
                   Write-Host "Executing script: $($sqlFile.FullName)"
-                  # Example: Execute SQL script on the DB using the linked variable
                   sqlcmd -S $(SQLServer) -d $(SQLDatabase) -U $(SQLUserName) -P $(SQLPassword) -i $sqlFile.FullName
                 }
