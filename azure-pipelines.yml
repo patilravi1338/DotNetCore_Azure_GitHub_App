@@ -72,9 +72,10 @@ stages:
                   sqlcmd -S $(SQLServer) -d $(SQLDatabase) -U $(SQLUserName) -P $(SQLPassword) -i $sqlFile.FullName
                 }
 
+      # Skip the DeployToTest job by adding a condition that will never be true
       - job: DeployToTest
         displayName: 'Deploy to Test Environment'
-        dependsOn: DeployToDev
+        condition: eq(variables['Build.SourceBranchName'], 'dummy') # This will skip this job
         steps:
           - task: DownloadPipelineArtifact@2
             displayName: 'Download API Artifacts'
@@ -107,9 +108,10 @@ stages:
                   sqlcmd -S $(SQLServer) -d $(SQLDatabase) -U $(SQLUserName) -P $(SQLPassword) -i $sqlFile.FullName
                 }
 
+      # Skip the DeployToProd job by adding a condition that will never be true
       - job: DeployToProd
         displayName: 'Deploy to Production Environment'
-        dependsOn: DeployToTest
+        condition: eq(variables['Build.SourceBranchName'], 'dummy') # This will skip this job
         steps:
           - task: DownloadPipelineArtifact@2
             displayName: 'Download API Artifacts'
