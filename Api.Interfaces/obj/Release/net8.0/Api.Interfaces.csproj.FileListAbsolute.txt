@@ -1,0 +1,12 @@
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Interfaces\bin\Release\net8.0\Api.Interfaces.deps.json
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Interfaces\bin\Release\net8.0\Api.Interfaces.dll
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Interfaces\bin\Release\net8.0\Api.Interfaces.pdb
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Interfaces\obj\Release\net8.0\Api.Interfaces.GeneratedMSBuildEditorConfig.editorconfig
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Interfaces\obj\Release\net8.0\Api.Interfaces.AssemblyInfoInputs.cache
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Interfaces\obj\Release\net8.0\Api.Interfaces.AssemblyInfo.cs
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Interfaces\obj\Release\net8.0\Api.Interfaces.csproj.CoreCompileInputs.cache
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Interfaces\obj\Release\net8.0\Api.Interfaces.sourcelink.json
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Interfaces\obj\Release\net8.0\Api.Interfaces.dll
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Interfaces\obj\Release\net8.0\refint\Api.Interfaces.dll
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Interfaces\obj\Release\net8.0\Api.Interfaces.pdb
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Interfaces\obj\Release\net8.0\ref\Api.Interfaces.dll

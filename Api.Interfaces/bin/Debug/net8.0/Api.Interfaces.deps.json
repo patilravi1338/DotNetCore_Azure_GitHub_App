@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Api.Interfaces/1.0.0": {
+        "dependencies": {
+          "Api.Models": "1.0.0"
+        },
+        "runtime": {
+          "Api.Interfaces.dll": {}
+        }
+      },
+      "Api.Models/1.0.0": {
+        "runtime": {
+          "Api.Models.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Api.Interfaces/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Api.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

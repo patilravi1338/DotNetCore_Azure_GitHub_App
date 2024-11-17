@@ -32,7 +32,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Models\\Api.Models.csproj": {
+                "projectPath": "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Models\\Api.Models.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -124,6 +128,82 @@
         }
       }
     },
+    "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Repositories\\Api.Repositories.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Repositories\\Api.Repositories.csproj",
+        "projectName": "Api.Repositories",
+        "projectPath": "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Repositories\\Api.Repositories.csproj",
+        "packagesPath": "C:\\Users\\Shlok\\.nuget\\packages\\",
+        "outputPath": "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Repositories\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Shlok\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Interfaces\\Api.Interfaces.csproj": {
+                "projectPath": "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Interfaces\\Api.Interfaces.csproj"
+              },
+              "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Models\\Api.Models.csproj": {
+                "projectPath": "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Models\\Api.Models.csproj"
+              },
+              "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Utilities\\Api.Utilities.csproj": {
+                "projectPath": "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Utilities\\Api.Utilities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.2.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Services\\Api.Services.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -156,8 +236,8 @@
               "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Interfaces\\Api.Interfaces.csproj": {
                 "projectPath": "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Interfaces\\Api.Interfaces.csproj"
               },
-              "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Models\\Api.Models.csproj": {
-                "projectPath": "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Models\\Api.Models.csproj"
+              "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Repositories\\Api.Repositories.csproj": {
+                "projectPath": "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Repositories\\Api.Repositories.csproj"
               }
             }
           }
@@ -171,6 +251,84 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Utilities\\Api.Utilities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Utilities\\Api.Utilities.csproj",
+        "projectName": "Api.Utilities",
+        "projectPath": "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Utilities\\Api.Utilities.csproj",
+        "packagesPath": "C:\\Users\\Shlok\\.nuget\\packages\\",
+        "outputPath": "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Utilities\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Shlok\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Interfaces\\Api.Interfaces.csproj": {
+                "projectPath": "C:\\My Projects\\DotNetCore_Azure_GitHub_App\\DotNetCore_Azure_GitHub_App\\Api.Interfaces\\Api.Interfaces.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.9.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

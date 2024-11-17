@@ -1,0 +1,12 @@
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Models\bin\Debug\net8.0\Api.Models.deps.json
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Models\bin\Debug\net8.0\Api.Models.dll
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Models\bin\Debug\net8.0\Api.Models.pdb
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Models\obj\Debug\net8.0\Api.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Models\obj\Debug\net8.0\Api.Models.AssemblyInfoInputs.cache
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Models\obj\Debug\net8.0\Api.Models.AssemblyInfo.cs
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Models\obj\Debug\net8.0\Api.Models.csproj.CoreCompileInputs.cache
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Models\obj\Debug\net8.0\Api.Models.sourcelink.json
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Models\obj\Debug\net8.0\Api.Models.dll
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Models\obj\Debug\net8.0\refint\Api.Models.dll
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Models\obj\Debug\net8.0\Api.Models.pdb
+C:\My Projects\DotNetCore_Azure_GitHub_App\DotNetCore_Azure_GitHub_App\Api.Models\obj\Debug\net8.0\ref\Api.Models.dll

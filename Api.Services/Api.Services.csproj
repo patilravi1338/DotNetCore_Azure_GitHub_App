@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Api.Interfaces\Api.Interfaces.csproj" />
-    <ProjectReference Include="..\Api.Models\Api.Models.csproj" />
+    <ProjectReference Include="..\Api.Repositories\Api.Repositories.csproj" />
   </ItemGroup>
 
 </Project>
