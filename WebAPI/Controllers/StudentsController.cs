@@ -17,8 +17,14 @@ public class StudentsController : ControllerBase
   [HttpGet(Name = "GetStudents")]
   public async Task<IActionResult> GetStudents()
   {
-    var students = await _studentService.GetStudentsAsync();
-    return Ok(students);
+    try
+    {
+      var students = await _studentService.GetStudentsAsync();
+      return Ok(students);
+    }catch (Exception ex)
+    {
+      return StatusCode(500, ex);
+    }
   }
 
   [HttpPost]
