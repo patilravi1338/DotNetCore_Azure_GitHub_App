@@ -71,3 +71,73 @@ stages:
                   # Example: Execute SQL script on the DB using the linked variable
                   sqlcmd -S $(SQLServer) -d $(SQLDatabase) -U $(SQLUserName) -P $(SQLPassword) -i $sqlFile.FullName
                 }
+
+      - job: DeployToTest
+        displayName: 'Deploy to Test Environment'
+        dependsOn: DeployToDev
+        steps:
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download API Artifacts'
+            inputs:
+              artifact: 'API'
+          
+          - task: AzureWebApp@1
+            displayName: 'Deploy API to Test'
+            inputs:
+              azureSubscription: 'Free Trial (bfcaf08b-b9a9-41be-8d42-d7ad6a6f57a7)'
+              appType: 'webApp'
+              appName: 'DotNetCoreAzureGitHubApp'
+              package: '$(Pipeline.Workspace)/WebAPI'
+
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download SQL Scripts'
+            inputs:
+              artifact: 'Metadata'
+          
+          - task: PowerShell@2
+            displayName: 'Run SQL Scripts on Test'
+            inputs:
+              targetType: 'inline'
+              script: |
+                Write-Host "Running SQL Scripts on Test DB"
+                $sqlFiles = Get-ChildItem -Path "$(Pipeline.Workspace)/Metadata" -Filter "*.sql"
+                foreach ($sqlFile in $sqlFiles) {
+                  Write-Host "Executing script: $($sqlFile.FullName)"
+                  # Example: Execute SQL script on the DB using the linked variable
+                  sqlcmd -S $(SQLServer) -d $(SQLDatabase) -U $(SQLUserName) -P $(SQLPassword) -i $sqlFile.FullName
+                }
+
+      - job: DeployToProd
+        displayName: 'Deploy to Production Environment'
+        dependsOn: DeployToTest
+        steps:
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download API Artifacts'
+            inputs:
+              artifact: 'API'
+
+          - task: AzureWebApp@1
+            displayName: 'Deploy API to Production'
+            inputs:
+              azureSubscription: 'Free Trial (bfcaf08b-b9a9-41be-8d42-d7ad6a6f57a7)'
+              appType: 'webApp'
+              appName: 'DotNetCoreAzureGitHubApp'
+              package: '$(Pipeline.Workspace)/WebAPI'
+          
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download SQL Scripts'
+            inputs:
+              artifact: 'Metadata'
+          
+          - task: PowerShell@2
+            displayName: 'Run SQL Scripts on Production'
+            inputs:
+              targetType: 'inline'
+              script: |
+                Write-Host "Running SQL Scripts on Prod DB"
+                $sqlFiles = Get-ChildItem -Path "$(Pipeline.Workspace)/Metadata" -Filter "*.sql"
+                foreach ($sqlFile in $sqlFiles) {
+                  Write-Host "Executing script: $($sqlFile.FullName)"
+                  # Example: Execute SQL script on the DB using the linked variable
+                  sqlcmd -S $(SQLServer) -d $(SQLDatabase) -U $(SQLUserName) -P $(SQLPassword) -i $sqlFile.FullName
+                }
