@@ -1,0 +1,143 @@
+trigger:
+  branches:
+    include:
+      - main  # Change this to your branch name
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  - group: New variable group 17-Nov - SQL  # Ensure your variable group is linked here
+
+stages:
+  - stage: Build
+    displayName: 'Build Stage'
+    jobs:
+      - job: BuildJob
+        steps:
+          - task: NuGetCommand@2
+            inputs:
+              command: 'restore'
+              restoreSolution: '**/*.sln'
+          - task: MSBuild@1
+            inputs:
+              solution: '**/*.sln'
+              msbuildArguments: '/p:Configuration=Release'
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish API Artifacts'
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'API'
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish SQL Scripts'
+            inputs:
+              PathtoPublish: '$(Build.SourcesDirectory)/Metadata'
+              ArtifactName: 'Metadata'
+
+  - stage: Deploy
+    displayName: 'Deploy Stage'
+    dependsOn: Build
+    jobs:
+      - job: DeployToDev
+        displayName: 'Deploy to Dev Environment'
+        steps:
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download API Artifacts'
+            inputs:
+              artifact: 'API'
+          
+          - task: AzureWebApp@1
+            displayName: 'Deploy API to Dev'
+            inputs:
+              azureSubscription: 'Free Trial (bfcaf08b-b9a9-41be-8d42-d7ad6a6f57a7)'
+              appType: 'webApp'
+              appName: 'DotNetCoreAzureGitHubApp'
+              package: '$(Pipeline.Workspace)/WebAPI'
+          
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download SQL Scripts'
+            inputs:
+              artifact: 'Metadata'
+          
+          - task: PowerShell@2
+            displayName: 'Run SQL Scripts on Dev'
+            inputs:
+              targetType: 'inline'
+              script: |
+                Write-Host "Running SQL Scripts on Dev DB"
+                $sqlFiles = Get-ChildItem -Path "$(Pipeline.Workspace)/Metadata" -Filter "*.sql"
+                foreach ($sqlFile in $sqlFiles) {
+                  Write-Host "Executing script: $($sqlFile.FullName)"
+                  # Example: Execute SQL script on the DB using the linked variable
+                  sqlcmd -S $(SQLServer) -d $(SQLDatabase) -U $(SQLUserName) -P $(SQLPassword) -i $sqlFile.FullName
+                }
+
+      - job: DeployToTest
+        displayName: 'Deploy to Test Environment'
+        dependsOn: DeployToDev
+        steps:
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download API Artifacts'
+            inputs:
+              artifact: 'API'
+          
+          - task: AzureWebApp@1
+            displayName: 'Deploy API to Test'
+            inputs:
+              azureSubscription: 'Free Trial (bfcaf08b-b9a9-41be-8d42-d7ad6a6f57a7)'
+              appType: 'webApp'
+              appName: 'DotNetCoreAzureGitHubApp'
+              package: '$(Pipeline.Workspace)/WebAPI'
+
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download SQL Scripts'
+            inputs:
+              artifact: 'Metadata'
+          
+          - task: PowerShell@2
+            displayName: 'Run SQL Scripts on Test'
+            inputs:
+              targetType: 'inline'
+              script: |
+                Write-Host "Running SQL Scripts on Test DB"
+                $sqlFiles = Get-ChildItem -Path "$(Pipeline.Workspace)/Metadata" -Filter "*.sql"
+                foreach ($sqlFile in $sqlFiles) {
+                  Write-Host "Executing script: $($sqlFile.FullName)"
+                  # Example: Execute SQL script on the DB using the linked variable
+                  sqlcmd -S $(SQLServer) -d $(SQLDatabase) -U $(SQLUserName) -P $(SQLPassword) -i $sqlFile.FullName
+                }
+
+      - job: DeployToProd
+        displayName: 'Deploy to Production Environment'
+        dependsOn: DeployToTest
+        steps:
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download API Artifacts'
+            inputs:
+              artifact: 'API'
+
+          - task: AzureWebApp@1
+            displayName: 'Deploy API to Production'
+            inputs:
+              azureSubscription: 'Free Trial (bfcaf08b-b9a9-41be-8d42-d7ad6a6f57a7)'
+              appType: 'webApp'
+              appName: 'DotNetCoreAzureGitHubApp'
+              package: '$(Pipeline.Workspace)/WebAPI'
+          
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download SQL Scripts'
+            inputs:
+              artifact: 'Metadata'
+          
+          - task: PowerShell@2
+            displayName: 'Run SQL Scripts on Production'
+            inputs:
+              targetType: 'inline'
+              script: |
+                Write-Host "Running SQL Scripts on Prod DB"
+                $sqlFiles = Get-ChildItem -Path "$(Pipeline.Workspace)/Metadata" -Filter "*.sql"
+                foreach ($sqlFile in $sqlFiles) {
+                  Write-Host "Executing script: $($sqlFile.FullName)"
+                  # Example: Execute SQL script on the DB using the linked variable
+                  sqlcmd -S $(SQLServer) -d $(SQLDatabase) -U $(SQLUserName) -P $(SQLPassword) -i $sqlFile.FullName
+                }
